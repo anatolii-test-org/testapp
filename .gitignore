@@ -5,5 +5,3 @@ node_modules/
 .idea/*
 */build/
 build/
-*/*package-lock.json
-*package-lock.json
