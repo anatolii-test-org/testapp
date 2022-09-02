@@ -34,7 +34,8 @@ app.post('/gh-webhook', async (req, res) => {
 
     if (EVENTS.includes(body.action) && body.pull_request) {
         const pullRequestNumber = body.pull_request.number
-        console.log(action + "/" + orgName + "/" + repositoryName + "/" + pullRequestNumber)
+        const branch = body.pull_request.head.ref
+        console.log(action + "/" + orgName + "/" + repositoryName + "/" + pullRequestNumber + " " + branch)
         const url = process.env.RESULTS_URL + '/api/v1/task/update/queue/?repository_name=client&build_version=1.18378.0'
         const updRes = await axios.default.get(url, {headers: {"accept": "application/json"}})
 
