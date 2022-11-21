@@ -12,7 +12,7 @@ dotenv.config()
 const pk = process.env.PRIVATE_KEY
 const appId = process.env.APP_ID
 const installationId = process.env.INSTALLATION_ID
-//const EVENTS = ['edited', 'reopened', 'opened']
+const EVENTS = ['edited', 'reopened', 'opened']
 
 let ghApp: App
 
@@ -28,29 +28,31 @@ app.get('/ping', (req, res) => {
     res.status(200).send('pong')
 })
 
-/*app.post('/gh-webhook', async (req, res) => {
+app.post('/gh-webhook', async (req, res) => {
     const body = req.body
     const action = body.action
     console.log("action:" + action)
+    console.log("action:" + action)
+    console.log("action:" + body)
 
     const repositoryName = body.repository.name
     const orgName = body.organization.login
 
-    if (EVENTS.includes(body.action) && body.pull_request) {
-        const pullRequestNumber = body.pull_request.number
-        const branch = body.pull_request.head.ref
-        console.log(action + "/" + orgName + "/" + repositoryName + "/" + pullRequestNumber + " " + branch)
-        const url = process.env.RESULTS_URL + '/api/v1/task/update/queue/?repository_name=client&build_version=1.18378.0'
-        const updRes = await axios.default.get(url, {headers: {"accept": "application/json"}})
-
-        const commentResult = await createComment(repositoryName, orgName, pullRequestNumber, `[${action}] [${repositoryName}] [${pullRequestNumber}] e2e tests triggered ${JSON.stringify(updRes.data)}`)
-        console.log(JSON.stringify(commentResult.data.body))
-    }
+    // if (EVENTS.includes(body.action) && body.pull_request) {
+    //     const pullRequestNumber = body.pull_request.number
+    //     const branch = body.pull_request.head.ref
+    //     console.log(action + "/" + orgName + "/" + repositoryName + "/" + pullRequestNumber + " " + branch)
+    //     const url = process.env.RESULTS_URL + '/api/v1/task/update/queue/?repository_name=client&build_version=1.18378.0'
+    //     const updRes = await axios.default.get(url, {headers: {"accept": "application/json"}})
+    //
+    //     const commentResult = await createComment(repositoryName, orgName, pullRequestNumber, `[${action}] [${repositoryName}] [${pullRequestNumber}] e2e tests triggered ${JSON.stringify(updRes.data)}`)
+    //     console.log(JSON.stringify(commentResult.data.body))
+    // }
 
     res.writeHead(200, {'Content-Type': 'application/json;charset=UTF-8'})
     res.write('')
     res.end()
-})*/
+})
 
 app.post('/tc-webhook', async (req, res) => {
         console.log(req.body)

@@ -19,7 +19,7 @@ jobs:
     - name: curl
       uses: wei/curl@v1
       with:
-        args: -X POST https://anatolii.ngrok.io/gh-webhook?bn=$BUILD_NUMBER
+        args: -X POST https://anatolii.ngrok.io/gh-webhook?bn=$BUILD_NUMBER&sha=$GITHUB_SHA
     - uses: actions/checkout@v3
     - name: Use Node.js
       uses: actions/setup-node@v3
