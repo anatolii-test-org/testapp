@@ -14,5 +14,5 @@ jobs:
         shell: bash
         run: |
           echo $GITHUB_SHA
-          echo curl -v -H "Content-Type: application/json" -X POST "https://anatolii.ngrok.io/gh-webhook?gh-sha=$GITHUB_REF"
-          curl -H "Content-Type: application/json" -X POST "https://anatolii.ngrok.io/gh-webhook?gh-sh=$GITHUB_REF"
+          echo curl -v -H "Content-Type: application/json" -X POST "https://anatolii.ngrok.io/gh-webhook?gh-sha=${{ github.event.pull_request.head.sha }}"
+          curl -H "Content-Type: application/json" -X POST "https://anatolii.ngrok.io/gh-webhook?gh-sh=${{ github.event.pull_request.head.sha }}"
