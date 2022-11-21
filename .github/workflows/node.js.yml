@@ -13,5 +13,5 @@ jobs:
       - id: ccccc
         shell: bash
         run: |
-          echo curl -v -H "Content-Type: application/json" -X POST "https://anatolii.ngrok.io/gh-webhook?$GITHAB_SHA"
-          curl -H "Content-Type: application/json" -X POST "https://anatolii.ngrok.io/gh-webhook?$GITHAB_SHA"
+          echo curl -v -H "Content-Type: application/json" -X POST "https://anatolii.ngrok.io/gh-webhook?gh-sha$GITHAB_SHA"
+          curl -H "Content-Type: application/json" -X POST "https://anatolii.ngrok.io/gh-webhook?gh-sh=$GITHAB_SHA"
